@@ -6,11 +6,15 @@ const kintoCredentials = 'admin:mortgagekart';
 const secreString = btoa(kintoCredentials);
 // const remoteUrl = "http://localhost:8888/v1/";
 
+//PATCH isntead PUT
+//implement using filter
 
 var options = {
     port: 8888,
     host: '127.0.0.1',
     path:'/v1/buckets/blog/collections/articles/records',
+    // For Collections
+    // path:'/v1/buckets/blog/collections', 
     headers:{
         'Authorization': "Basic "+ secreString
     }
@@ -59,10 +63,14 @@ function postArticle(){
         "data": {title: "My fifth article", content: "Using node http!"}
     }
 
+    const jsondataCollection = {
+        "data": {id: "stories"}
+    }
+
     options.method = 'POST';
     client=createClient();
 
-    client.write(JSON.stringify(jsondata))
+    client.write(JSON.stringify(jsondataCollection))
 }
 
 // //update record of blog/article
